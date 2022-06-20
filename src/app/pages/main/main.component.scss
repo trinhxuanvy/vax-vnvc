@@ -1,0 +1,40 @@
+@import '~/src/assets/scss/index';
+
+.mat-button-wrapper {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+.mat-menu-panel{
+  background-color: $c-carrot-orange;
+  max-width: none !important;
+}
+
+.v-menudrop {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  background-color: aqua;
+  top: 0;
+  left: 100%;
+  // display: none;
+}
+
+.v-btn-hover {
+  &:hover {
+    background-color: yellow;
+    .v-menudrop {
+      display: flex;
+    }
+  }
+}
+
+.mat-form-field-appearance-fill .mat-form-field-flex {
+  background-color: $c-white;
+}
+
+.mat-select-value {
+  color: $c-carrot-orange;
+}
+

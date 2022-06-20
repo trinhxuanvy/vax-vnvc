@@ -1,0 +1,14 @@
+<div class="d-flex justify-content-between">
+  <div>
+    <h4 class="v-text-uppercase">
+      {{ item.title }}
+    </h4>
+    <div>Phòng bệnh: {{ item.note }}</div>
+    <div class="v-c-primary-2 fs-5 d-flex justify-content-end mt-3">
+      {{ handleConvertToVND(item.price) }}
+    </div>
+  </div>
+  <button mat-mini-fab color="warn" (click)="handleClearItem()">
+    <span class="material-icons"> close </span>
+  </button>
+</div>

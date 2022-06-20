@@ -1,0 +1,51 @@
+.v-text-uppercase {
+  text-transform: uppercase;
+}
+
+.v-border-radius-19 {
+  border-radius: 19px;
+}
+
+.mat-divider {
+  border-top-color: rgba($c-scorpion, 0.3);
+}
+
+.v-dr-lv1 {
+
+}
+
+.v-dr-lv2 {
+  min-width: 300px;
+  background-color: $c-carrot-orange;
+  color: $c-white;
+  left: 100%;
+  top: 0;
+  display: none;
+  z-index: 1000000;
+}
+
+.hv-dr-vl2 {
+  &:hover {
+    .v-dr-lv2 {
+      display: block;
+    }
+  }
+}
+
+.v-dr-lv1 {
+  display: none;
+  z-index: 1000000;
+  cursor: pointer;
+}
+
+.hv-dr-vl1 {
+  &:hover {
+    .v-dr-lv1 {
+      display: block;
+    }
+  }
+}
+
+.v-border-radius-8 {
+  border-radius: 8px;
+}

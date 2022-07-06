@@ -22,6 +22,6 @@ export class VacxinItemComponent implements OnInit {
   }
 
   handleClearItem() {
-    this.clearItem.emit(this.item.id);
+    this.clearItem.emit(this.item._id);
   }
 }

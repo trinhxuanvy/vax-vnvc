@@ -1,18 +1,16 @@
 export interface Dashboard {
-  path?: string;
-  title?: string;
-  typeVacxin?: number;
-  children?: OptionDashboard[] | [];
-}
-
-export interface OptionDashboard {
-  title?: string;
-  subTitle?: string;
-  typeVacxin?: number;
-  typeOption?: number;
+  _id?: string;
+  categoryName?: string;
+  childrens?: Dashboard[] | [];
 }
 
 export interface Filter {
-  code?: number;
+  code?: string;
   title?: string;
+}
+
+export interface QuerySearchObject {
+  type?: string | null;
+  categoryId?: string | null;
+  search?: string | null;
 }

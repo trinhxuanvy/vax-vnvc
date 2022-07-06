@@ -7,7 +7,7 @@ export const FILTERS: Filter[] = [
     title: 'Tất cả',
   },
   {
-    code: FORMAT_VACXIN.Packet,
+    code: FORMAT_VACXIN.Package,
     title: 'Vắc xin Gói',
   },
   {

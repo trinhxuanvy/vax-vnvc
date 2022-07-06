@@ -1,17 +1,17 @@
 <div *ngIf="item" class="v-bg-light v-border-radius-19 v-p-3">
   <div class="v-bg-image p-3">
-    <h3 class="v-text-uppercase">{{ item.title }}</h3>
-    <div class="v-c-text">Nguồn gốc: {{ item.madeIn }}</div>
-    <div class="v-c-text">{{ item.note }}</div>
+    <h3 class="v-text-uppercase v-2-line">{{ item.vaccineName }}</h3>
+    <div class="v-c-text">Nguồn gốc: {{ item.source }}</div>
+    <div class="v-c-text v-2-line">{{ item.prevention }}</div>
     <div class="mt-4 v-c-primary-2 d-flex -align-items-center fs-5">
       <span class="material-icons me-2"> sell </span>
-      {{ handleConvertToVND(1790000) }}
+      {{ handleConvertToVND(item.price) }}
     </div>
   </div>
   <div class="p-3">
     <div class="my-3">Phòng bệnh:</div>
-    <p>
-      {{ item.description }}
+    <p class="v-2-line">
+      {{ item.preventionDescription }}
     </p>
     <button
       class="btn mt-4 v-c-light d-flex align-items-center justify-content-center w-100"

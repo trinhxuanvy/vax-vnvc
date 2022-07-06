@@ -14,7 +14,7 @@ export class CardItemComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  handleConvertToVND(value: number) {
+  handleConvertToVND(value: any) {
     return Intl.NumberFormat('vi-VN', {
       style: 'currency',
       currency: 'VND',
@@ -22,6 +22,6 @@ export class CardItemComponent implements OnInit {
   }
 
   handleClickChoose() {
-    this.chooseItem.emit(this.item.id);
+    this.chooseItem.emit(this.item._id);
   }
 }

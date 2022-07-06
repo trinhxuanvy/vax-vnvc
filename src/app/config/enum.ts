@@ -1,7 +1,7 @@
 export enum FORMAT_VACXIN {
-  All = 0,
-  Packet = 1,
-  Simple = 2,
+  All = 'All',
+  Package = 'Package',
+  Simple = 'Retail',
 }
 
 export enum TYPE_VACXIN {
@@ -14,12 +14,12 @@ export enum TYPE_VACXIN {
 }
 
 export enum TYPE_VACXIN_OPTION {
-  Packet_1_13 = 0,
-  Packet_2_10 = 1,
-  Packet_3_13 = 2,
-  Packet_1_11 = 3,
-  Packet_2_8 = 4,
-  Packet_3_11 = 5,
+  Package_1_13 = 0,
+  Package_2_10 = 1,
+  Package_3_13 = 2,
+  Package_1_11 = 3,
+  Package_2_8 = 4,
+  Package_3_11 = 5,
   Month_0_9 = 6,
   Month_0_12 = 7,
   Month_0_24 = 8,

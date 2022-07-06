@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -14,6 +15,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 import { LottieModule } from 'ngx-lottie';
 import player from 'lottie-web';
@@ -25,6 +28,7 @@ import { CardItemComponent } from './components/card-item/card-item.component';
 import { VacxinItemComponent } from './components/vacxin-item/vacxin-item.component';
 import { DetailComponent } from './pages/detail/detail.component';
 import { PaymentComponent } from './pages/payment/payment.component';
+import { LoadingComponent } from './share/loading/loading.component';
 
 import { appRoutes } from './routing.module';
 
@@ -41,6 +45,7 @@ export function playerFactory() {
     VacxinItemComponent,
     DetailComponent,
     PaymentComponent,
+    LoadingComponent,
   ],
   imports: [
     BrowserModule,
@@ -56,6 +61,9 @@ export function playerFactory() {
     MatProgressSpinnerModule,
     MatDividerModule,
     MatSnackBarModule,
+    HttpClientModule,
+    MatRadioModule,
+    MatDatepickerModule,
     LottieModule.forRoot({ player: playerFactory }),
     RouterModule.forRoot(appRoutes),
   ],

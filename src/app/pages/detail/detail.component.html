@@ -1,17 +1,17 @@
-<div class="container py-5">
+<div *ngIf="item" class="container py-5">
   <div class="row">
     <div class="col-4">
       <div class="v-border-radius-19 v-bg-primary-5 p-5 v-c-light">
         <div class="v-text-uppercase fs-3" style="line-height: 1.1">
-          {{ item.title }}
+          {{ item.vaccineName }}
         </div>
-        <div class="mt-2">Nguồn gốc: {{ item.madeIn }}</div>
+        <div class="mt-2">Nguồn gốc: {{ item.source }}</div>
         <div class="d-flex align-items-center fs-2 mt-4">
           <span class="material-icons">sell</span>
           <div class="ms-2">{{ handleConvertToVND(item.price) }}</div>
         </div>
         <div class="mt-5 fw-bold">Phòng bệnh</div>
-        <div class="mt-2">{{ item.note }}</div>
+        <div class="mt-2">{{ item.prevention }}</div>
         <button
           mat-raised-button
           color="warn"
@@ -33,7 +33,7 @@
       </a>
     </div>
     <div class="col-8">
-      <div class="px-4" [innerHtml]="item.info"></div>
+      <div class="px-4" [innerHtml]="item.description"></div>
     </div>
   </div>
 </div>

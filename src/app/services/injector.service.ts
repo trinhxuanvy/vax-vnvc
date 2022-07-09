@@ -11,10 +11,7 @@ import { API_URL } from '../config/api';
 export class InjectorService {
   constructor(private http: HttpClient) {}
 
-  getInjectorByCode(query: {
-    code: string;
-    relationship: string;
-  }): Observable<any> {
+  getInjectorByCode(query: { code: string }): Observable<Injector> {
     return this.http.get<any>(
       API_URL + '/injector/customer/code?' + stringify(query)
     );

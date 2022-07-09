@@ -1,7 +1,18 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  OnInit,
+  ViewEncapsulation,
+} from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { debounce, map, flatMap, interval } from 'rxjs';
-import { cloneDeep } from 'lodash';
+import {
+  map,
+  flatMap,
+  interval,
+  debounceTime,
+  distinctUntilChanged,
+} from 'rxjs';
+import { cloneDeep, debounce } from 'lodash';
 import { Router } from '@angular/router';
 import {
   MatSnackBar,
@@ -83,9 +94,13 @@ export class MainComponent implements OnInit {
   }
 
   handleInitData() {
+    let time;
+
+    if (!time) {
+    }
     this.vaccinService
       .getVaccins(this.querySearch)
-      .pipe(debounce(() => interval(500)))
+      .pipe(debounceTime(1000), distinctUntilChanged())
       .subscribe((data) => {
         this.initVacxins = data.entities;
         this.vacxins = cloneDeep(this.initVacxins);
@@ -138,12 +153,26 @@ export class MainComponent implements OnInit {
     // this.currentNode = this.dashboards.filter((item) => item.path === path)[0];
   }
 
-  handleSearchBox(e: any) {
-    this.querySearch = {
-      ...this.querySearch,
-      search: e.target.value,
+  debounceCustom(func: any, timeout = 300) {
+    let timer: any;
+    return (...args: any) => {
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        func.apply(this, args);
+      }, timeout);
     };
-    this.handleInitData();
+  }
+
+  handleSearchBox(e: any) {
+    console.log('oke');
+
+    debounce(() => {
+      this.querySearch = {
+        ...this.querySearch,
+        search: e.target.value,
+      };
+      this.handleInitData();
+    }, 1000);
   }
 
   handleChangeFilter(e: any) {

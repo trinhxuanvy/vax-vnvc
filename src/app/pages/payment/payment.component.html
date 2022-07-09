@@ -37,30 +37,54 @@
           </mat-radio-group>
         </div>
         <div class="mt-4">
-          <p class="fs-5 fw-bold">THÔNG TIN NGƯỜI ĐƯỢC TIÊM</p>
-          <p>
-            Quý khách có thể đăng ký cùng lúc cho tối đa 5 người tiêm, VNVC chỉ
-            thực hiện tiêm chủng cho Khách hàng có thông tin đăng ký trùng khớp
-            hoàn toàn với thông tin Quý Khách cung cấp tại đây.
-          </p>
+          <p class="fs-5 fw-bold">THÔNG TIN NGƯỜI LIÊN HỆ</p>
+          <p>Nhập thông tin người thân liên hệ tại đây tại đây.</p>
           <mat-divider></mat-divider>
           <div class="d-flex align-items-end mt-3">
             <div class="">
-              <p class="fs-6 fw-bold">Nhập mã khách hàng tại VNVC</p>
+              <p class="fs-6 fw-bold">Họ và tên *</p>
               <input
-                [(ngModel)]="code"
+                [(ngModel)]="customer.name"
                 type="text"
                 class="form-control"
-                placeholder="KH1564856"
               />
             </div>
             <div class="ms-4">
-              <p class="fs-6 fw-bold">Ngày tháng năm sinh</p>
+              <p class="fs-6 fw-bold">Số điện thoại *</p>
               <input
-                [(ngModel)]="currentInjector.dateOfBirth"
-                type="date"
+                [(ngModel)]="customer.phone"
+                type="text"
                 class="form-control"
-                placeholder="24/07/2000"
+              />
+            </div>
+            <div class="form-group ms-4">
+              <p class="fs-6 fw-bold">Mối quan hệ với người tiêm *</p>
+              <select
+                [(ngModel)]="currentInjector.relationship"
+                name=""
+                id=""
+                class="form-control"
+              >
+                <option value="">Chọn mối quan hệ</option>
+                <option value="BA">Ba</option>
+                <option value="ME">Mẹ</option>
+                <option value="EM">Em</option>
+              </select>
+            </div>
+          </div>
+
+          <p class="fs-5 fw-bold mt-4">THÔNG TIN NGƯỜI ĐƯỢC TIÊM</p>
+          <mat-divider></mat-divider>
+          <p class="mt-4">
+            Nhập mã code (nếu có) để điền thông tin nhanh cho người tiêm.
+          </p>
+          <div class="d-flex align-items-end mt-2">
+            <div class="form-group">
+              <label class="fw-bold">Mã người tiêm</label>
+              <input
+                [(ngModel)]="currentInjector.code"
+                type="text"
+                class="form-control"
               />
             </div>
             <button
@@ -78,39 +102,29 @@
             Mã tiêm chủng VNVC là dãy số được in trên sticker dán trên sổ tiêm
             chủng.
           </div>
-          <div class="row">
-            <div class="form-group col-6 mt-3">
+          <div class="row align-items-end">
+            <div class="form-group col-4 mt-3">
               <label class="fw-bold">Họ và tên *</label>
-              <input [(ngModel)]="name" type="text" class="form-control" />
-            </div>
-            <div class="form-group col-6 mt-3">
-              <label class="fw-bold">Mối quan hệ *</label>
-              <select
-                [(ngModel)]="relationShip"
-                name=""
-                id=""
+              <input
+                [(ngModel)]="currentInjector.name"
+                type="text"
                 class="form-control"
-              >
-                <option value="">Chọn mối quan hệ</option>
-                <option value="BA">Ba</option>
-                <option value="ME">Mẹ</option>
-                <option value="EM">Em</option>
-              </select>
+              />
             </div>
-            <div class="form-group col-6 mt-3">
+            <div class="form-group col-4 mt-3">
               <label class="fw-bold">Ngày sinh *</label>
               <input
-                [ngModel]="dateOfBirth | date: 'yyyy-MM-dd'"
+                [ngModel]="currentInjector.dateOfBirth | date: 'yyyy-MM-dd'"
                 type="date"
                 class="form-control"
               />
             </div>
-            <div class="form-group col-6 mt-3">
+            <div class="form-group col-4 mt-3">
               <label class="fw-bold">Giới tính *</label>
               <mat-radio-group
                 aria-labelledby="example-radio-group-label"
                 class="example-radio-group d-flex mt-2"
-                [(ngModel)]="gender"
+                [(ngModel)]="currentInjector.gender"
               >
                 <mat-radio-button
                   color="warn"
@@ -126,37 +140,53 @@
                 </mat-radio-button>
               </mat-radio-group>
             </div>
-            <div class="form-group col-6 mt-3">
+            <div class="form-group col-4 mt-3">
               <label class="fw-bold">Số điện thoại *</label>
               <label class="mt-1"
                 >Nếu người được tiêm chưa có SĐT, vui lòng điền SĐT của cha/mẹ
                 hoặc người giám hộ sẽ nhận mã tiêm chủng</label
               >
               <input
-                [(ngModel)]="phone"
+                [(ngModel)]="currentInjector.phone"
                 type="text"
                 class="form-control mt-1"
               />
             </div>
-            <div class="form-group col-6 mt-3">
+            <div class="form-group col-4 mt-3">
               <label class="fw-bold">Email</label>
               <input type="email" class="form-control" />
             </div>
             <div class="form-group col-12 mt-3">
               <label class="fw-bold">Địa chỉ *</label>
-              <input [(ngModel)]="address" type="text" class="form-control" />
+              <input
+                [(ngModel)]="currentInjector.address"
+                type="text"
+                class="form-control"
+              />
             </div>
-            <div class="form-group col-6 mt-3">
+            <div class="form-group col-4 mt-3">
               <label class="fw-bold">Tỉnh/Thành *</label>
-              <input [(ngModel)]="province" type="text" class="form-control" />
+              <input
+                [(ngModel)]="currentInjector.provice"
+                type="text"
+                class="form-control"
+              />
             </div>
-            <div class="form-group col-6 mt-3">
+            <div class="form-group col-4 mt-3">
               <label class="fw-bold">Quận/Huyện *</label>
-              <input [(ngModel)]="district" type="text" class="form-control" />
+              <input
+                [(ngModel)]="currentInjector.district"
+                type="text"
+                class="form-control"
+              />
             </div>
-            <div class="form-group col-6 mt-3">
+            <div class="form-group col-4 mt-3">
               <label class="fw-bold">Phường/Xã *</label>
-              <input [(ngModel)]="commute" type="text" class="form-control" />
+              <input
+                [(ngModel)]="currentInjector.commute"
+                type="text"
+                class="form-control"
+              />
             </div>
           </div>
         </div>
@@ -164,7 +194,7 @@
           <p class="fs-5 fw-bold">CHỌN ĐỊA ĐIỂM MUỐN TIÊM</p>
           <mat-divider class="my-3"></mat-divider>
           <div class="row">
-            <div class="col-6">
+            <div class="col-4">
               <div class="form-group mt-3">
                 <label class="fw-bold">Trung tâm VNVC gần quý khách *</label>
                 <select
@@ -220,16 +250,17 @@
         <div class="mt-4">
           <p class="fs-5 fw-bold">DANH SÁCH VẮC XIN ĐĂNG KÝ</p>
           <div *ngIf="vacxins.length" class="row mt-3">
-            <div
-              class="mb-3 col-4 p-3 v-border-radius-19 v-bg-light"
-              style="box-shadow: 0 0 8px #00002636"
-              *ngFor="let vc of vacxins"
-            >
-              <app-vacxin-item
-                [item]="vc"
-                (clearItem)="handleRemoveFromCart($event)"
-              ></app-vacxin-item>
-              <mat-divider class="mt-3"></mat-divider>
+            <div class="mb-3 col-3" *ngFor="let vc of vacxins">
+              <div
+                style="box-shadow: 0 0 8px #00002636"
+                class="p-4 p-3 v-border-radius-19 v-bg-light"
+              >
+                <app-vacxin-item
+                  [item]="vc"
+                  (clearItem)="handleRemoveFromCart($event)"
+                  class=""
+                ></app-vacxin-item>
+              </div>
             </div>
           </div>
         </div>

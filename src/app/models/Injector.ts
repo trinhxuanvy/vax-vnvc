@@ -9,4 +9,6 @@ export interface Injector extends BaseModel {
   district?: string;
   commute?: string;
   address?: string;
+  relationship?: string;
+  code?: string;
 }

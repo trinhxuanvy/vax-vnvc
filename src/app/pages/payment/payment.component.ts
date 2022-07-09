@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { add } from 'lodash';
 import * as moment from 'moment';
 import {
   MatSnackBar,
@@ -28,7 +27,16 @@ import { VcsignupService } from '../../services/vcsignup.service';
 export class PaymentComponent implements OnInit {
   cusClose = 'close';
   vacxins: Vacxin[] = [];
-  customer!: Customer;
+  customer: Customer = {
+    _id: '',
+    name: '',
+    phone: '',
+    address: '',
+    province: '',
+    commute: '',
+    district: '',
+    identity: '',
+  };
   injectors: Injector[] = [];
   currentInjector: Injector = {
     _id: '',
@@ -40,22 +48,14 @@ export class PaymentComponent implements OnInit {
     provice: '',
     commute: '',
     district: '',
+    relationship: '',
+    code: 'NPHUNGTHINH2601',
   };
-  name = '';
-  gender = '';
-  address = '';
-  district = '';
-  province = '';
-  commute = '';
-  phone = '';
-  dateOfBirth = new Date();
   code = '';
-  relationShip = '';
   vaccines: Vacxin[] = [];
   centers: VCCenter[] = [];
   chooseVId = '';
   chooseVCId = '';
-  injId = '';
   horizontalPosition: MatSnackBarHorizontalPosition = 'center';
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';
 
@@ -73,6 +73,8 @@ export class PaymentComponent implements OnInit {
     this.handleGetVCCenter();
     this.handleGetDataLocal();
   }
+
+  handleGetCustomerByCode() {}
 
   handleGetVCCenter() {
     this.vcCenterService
@@ -95,34 +97,7 @@ export class PaymentComponent implements OnInit {
     }
   }
 
-  handleGetCustomerByCode() {
-    this.customerService.getCustomerByCode(this.code).subscribe((data) => {
-      console.log(data);
-      this.customer = data;
-    });
-  }
-
-  handleGetInjectorByCode() {
-    if (!this.code || !this.relationShip) return;
-
-    this.injectorService
-      .getInjectorByCode({
-        code: this.code,
-        relationship: this.relationShip,
-      })
-      .subscribe((data) => {
-        this.name = data.name as string;
-        this.gender = data.gender as string;
-        this.address = data.address as string;
-        this.district = data.district as string;
-        this.province = data.provice as string;
-        this.commute = data.commute as string;
-        this.phone = data.phone as string;
-        this.dateOfBirth = data.dateOfBirth;
-        this.injId = data._id as string;
-        this.injectors.push(data);
-      });
-  }
+  handleGetInjectorByCode() {}
 
   handleRemoveFromCart(e: any) {
     this.vacxins = this.vacxins.filter((item) => item._id !== e);
@@ -160,14 +135,8 @@ export class PaymentComponent implements OnInit {
         injectedDate: moment(date.setDate(date.getDate() + 30)).format('L'),
       };
     });
-    const mergeData: VCSignup = {
-      vcCenterId: this.chooseVCId,
-      injectorId: this.injId,
-      listVaccine: mergeVc,
-      status: 'Đang xủ lý',
-    };
 
-    this.vcSignupService.registerVC(mergeData).subscribe((data) => {
+    this.vcSignupService.registerVC({}).subscribe((data) => {
       let snackbarTitle = '';
       if (!data?.message) {
         snackbarTitle = 'Đăng ký thành công';
